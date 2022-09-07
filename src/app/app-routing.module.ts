@@ -1,7 +1,6 @@
 import { NgModule, Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginFormComponent } from '../../../ProyectoFinal/src/app/components/auth/login-form/login-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
 import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-detail-page.component';
@@ -16,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomePageComponent
+    component: HomePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -35,9 +35,7 @@ const routes: Routes = [
   {
     path:'**',
     component: NotFoundPageComponent
-  }
-
-  ];
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
