@@ -1,8 +1,8 @@
 <ng-container *ngIf="contacto;else errorContacto">
     <h1>Contacto : {{contacto.id}}</h1>
-    <h2>Nombre: {{contacto.nombre}} </h2>
+    <h2>Nombre: {{contacto | nombreCompleto}} </h2>
     <h2>Email: {{contacto.email}}</h2>
-</ng-container> 
+</ng-container>
 <ng-template #errorContacto>
     <p>Error en el contacto</p>
 </ng-template>
