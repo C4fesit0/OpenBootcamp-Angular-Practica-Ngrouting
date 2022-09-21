@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "gender": "female",
+      "name": { "title": "Mrs", "first": "Christina", "last": "Russell" },
+      "location": {
+        "street": { "number": 3249, "name": "The Green" },
+        "city": "Skerries",
+        "state": "Westmeath",
+        "country": "Ireland",
+        "postcode": 88923,
+        "coordinates": { "latitude": "2.4072", "longitude": "120.6654" },
+        "timezone": {
+          "offset": "+8:00",
+          "description": "Beijing, Perth, Singapore, Hong Kong"
+        }
+      },
+      "email": "christina.russell@example.com",
+      "login": {
+        "uuid": "3c8d5ede-e309-4326-bf1d-69458a81830f",
+        "username": "smallgorilla608",
+        "password": "akira",
+        "salt": "paKmjzR7",
+        "md5": "f8e6369a73e1a9f38157e21611493631",
+        "sha1": "ecb2aff5ac7a37f2b3a76d710433f67829050b18",
+        "sha256": "9008e3685d03cdd6faf980556a94e5693f8a9d8703137c1d945f17fa215d8565"
+      },
+      "dob": { "date": "1960-02-03T13:35:00.723Z", "age": 62 },
+      "registered": { "date": "2009-01-31T06:48:37.952Z", "age": 13 },
+      "phone": "051-515-2099",
+      "cell": "081-955-3261",
+      "id": { "name": "PPS", "value": "6948118T" },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/49.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/49.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/49.jpg"
+      },
+      "nat": "IE"
+    }
+  ],
+  "info": {
+    "seed": "85cd229e42365b86",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}
