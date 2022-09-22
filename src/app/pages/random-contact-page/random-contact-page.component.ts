@@ -18,8 +18,33 @@ export class RandomContactPageComponent implements OnInit {
   }
 
   obtenerNuevoContacto(){
-    this.randomUserService.obtenerRandomContact().subscribe((response: Results)=>{
+    /* this.randomUserService.obtenerRandomContact().subscribe(
+    (response: Results)=>{
       this.contact = response.results[0];  //Se lo pasaremos al random contact
+    },
+    (error)=>{
+      console.error(`Error: ${error}`)
+    }); */
+
+    this.randomUserService.obtenerRandomContact().subscribe(
+      {
+        next: (response: Results)=>{
+          this.contact = response.results[0];
+        },
+        error: (error)=> console.error(`${error}`),
+        complete: ()=>console.info('Peticion de random contact terminada')
+      }
+    )
+
+  }
+
+  obtenerListaContactos(n: number){
+    this.randomUserService.obtenerRandomContacts(10).subscribe({
+      next: (response: Results[])=>{
+        console.log(response);
+      },
+      error: (error)=> console.error(`${error}`),
+      complete: ()=>console.info('Peticion de random contact terminada')
     })
   }
 
