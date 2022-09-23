@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IContact } from '../../models/contact.interface';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { ContactService } from '../../services/contact.service';
+import { IRandomContact,Results } from '../../models/randomuser';
+import { RandomUserService } from '../../services/random-user.service';
 
 @Component({
   selector: 'app-contacts-page',
@@ -10,11 +12,12 @@ import { ContactService } from '../../services/contact.service';
 })
 export class ContactsPageComponent implements OnInit {
   filtroSexo: string='todos';
-  listaDeContactos: IContact[]=[];
+  listaRandomContacts: IRandomContact[]=[];
 
- 
 
-  constructor(private router: Router, private route:ActivatedRoute,private contactService: ContactService) { }
+  constructor(private router: Router, private route:ActivatedRoute,
+      private randomUserService: RandomUserService
+    ) { }
 
 
   ngOnInit(): void {
@@ -23,20 +26,43 @@ export class ContactsPageComponent implements OnInit {
       if(params.sexo){
         this.filtroSexo= params.sexo;
         console.log(params.sexo)
-      }
-      //Obtenemos la lista de contactos 
-      this.contactService.obtenerContactos(this.filtroSexo)?.then(
-        (lista)=> this.listaDeContactos=lista
-      ).catch( (error)=> console.log(`Ha habido un error al obtener los contactos: ${error}`))
-      .finally(()=> console.info('Peticion de contactos terminada'))
+        if(params.sexo ==='female' || params.sexo==='male'){
 
-    })
+          this.randomUserService.obtenerRandomContacts(10,params.sexo).subscribe({
+            next: (response: Results)=>{
+              console.log(response);
+              response.results.forEach((randomContact: IRandomContact, index: number)=>{
+                this.listaRandomContacts.push(randomContact);
+              });
+              console.log(this.listaRandomContacts);
+            },
+            error: (error)=> console.error(`${error}`),
+            complete: ()=>console.info('Peticion de random contact terminada')
+          });
+        }else{
+          //Implementacion para obtener la lista de contactos aleatorios
+        this.randomUserService.obtenerRandomContacts(10).subscribe({
+          next: (response: Results)=>{
+            console.log(response);
+            response.results.forEach((randomContact: IRandomContact, index: number)=>{
+              this.listaRandomContacts.push(randomContact);
+            });
+            console.log(this.listaRandomContacts);
+          },
+          error: (error)=> console.error(`${error}`),
+          complete: ()=>console.info('Peticion de random contact terminada')
+        });
+        }
+      }
+
+
+    });
+
 
   }
 
   // Ejemplo de paso de informacion entre componentes a traves del estado
-
-  volverAHome(contacto: IContact){
+  volverAHome(contacto: IRandomContact){
     let navigationExtras: NavigationExtras = {
       state:{
         data: contacto

@@ -28,21 +28,19 @@ export class RandomUserService {
     );
   }
 
-  obtenerRandomContacts(n:number): Observable<Results[]>{
-    const params: HttpParams=new HttpParams().set('results',n);
-    return this.http.get<Results[]>('https://randomuser.me/api',{params: params}).pipe(
-      retry(2), //Numero de reintentos de peticiones
-      catchError(this.handleError)//Sacamos error si algo falla
-    );
-  }
+  obtenerRandomContacts(n:number, sexo?:string): Observable<Results>{
+    let params: HttpParams=new HttpParams().set('results',n);
 
-  obtenerRandomContactsPorGenero(sexo:string): Observable<Results>{
-    const params: HttpParams=new HttpParams().set('gender:',sexo);
+    if(sexo){
+      params= params.append('gender',sexo);
+    }
+
     return this.http.get<Results>('https://randomuser.me/api',{params: params}).pipe(
       retry(2), //Numero de reintentos de peticiones
       catchError(this.handleError)//Sacamos error si algo falla
     );
   }
+
 
 
 

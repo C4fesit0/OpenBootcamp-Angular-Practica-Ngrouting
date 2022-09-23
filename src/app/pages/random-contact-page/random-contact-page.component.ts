@@ -9,6 +9,7 @@ import { Results, IRandomContact } from '../../models/randomuser';
 export class RandomContactPageComponent implements OnInit {
   contact : IRandomContact | undefined;
 
+
   constructor(private randomUserService: RandomUserService) { }
 
   ngOnInit(): void {
@@ -39,8 +40,8 @@ export class RandomContactPageComponent implements OnInit {
   }
 
   obtenerListaContactos(n: number){
-    this.randomUserService.obtenerRandomContacts(10).subscribe({
-      next: (response: Results[])=>{
+    this.randomUserService.obtenerRandomContacts(n).subscribe({
+      next: (response: Results)=>{
         console.log(response);
       },
       error: (error)=> console.error(`${error}`),
