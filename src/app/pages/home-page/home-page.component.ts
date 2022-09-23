@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router'; 
+import { Router, NavigationExtras } from '@angular/router';
 import { IContact } from '../../models/contact.interface';
+import { IRandomContact } from '../../models/randomuser';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { IContact } from '../../models/contact.interface';
 export class HomePageComponent implements OnInit {
 
   token: string | null= null;
-  contactoSeleccionado: IContact | undefined;
+  contactoSeleccionado: IRandomContact | undefined;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -21,16 +22,16 @@ export class HomePageComponent implements OnInit {
     //Leemos el estado del historial de navegacion
     if(history.state.data){
       console.log(history.state.data);
-      this.contactoSeleccionado=history.state.data;  
+      this.contactoSeleccionado=history.state.data;
     }
   }
-  
+
   navegarAContacts(): void{
     let navigationExtras: NavigationExtras = {
       queryParams: {
         filter: 'todos'
       }
     }
-    this.router.navigate(['contacts'],navigationExtras); 
+    this.router.navigate(['contacts'],navigationExtras);
   }
 }
