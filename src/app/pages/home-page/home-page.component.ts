@@ -29,9 +29,9 @@ export class HomePageComponent implements OnInit {
   navegarAContacts(): void{
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        filter: 'todos'
+        sexo: 'todos'
       }
     }
-    this.router.navigate(['contacts'],navigationExtras);
+    this.router.navigate(['dashboard/contacts'],navigationExtras);
   }
 }

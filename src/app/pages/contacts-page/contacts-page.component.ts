@@ -68,7 +68,7 @@ export class ContactsPageComponent implements OnInit {
         data: contacto
       }
     }
-    this.router.navigate(['/home'], navigationExtras);
+    this.router.navigate(['/dashboard'], navigationExtras);
   }
 
 }
