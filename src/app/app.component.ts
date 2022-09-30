@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
   title = 'ngrouting';
   token : string | null ='';
   constructor(private route: Router) {
-    
+
   }
 
   ngOnInit(): void {
@@ -18,10 +18,7 @@ export class AppComponent implements OnInit{
   }
 
 
-  logOut(): void{
-    sessionStorage.removeItem('token');
-    this.route.navigate(['login']);
-  }
+
 
 }
 

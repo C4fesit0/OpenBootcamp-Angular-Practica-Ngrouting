@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
         if(response.token){
 
           sessionStorage.setItem('token',response.token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['']);
         }
       },
       (error)=>{
@@ -39,7 +39,7 @@ export class LoginPageComponent implements OnInit {
       )
 
     //sessionStorage.setItem('token', '123456789');
-    this.router.navigate(['contacts']);
+    this.router.navigate(['']);
   }
 
 }
