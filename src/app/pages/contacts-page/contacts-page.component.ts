@@ -14,6 +14,8 @@ export class ContactsPageComponent implements OnInit {
   filtroSexo: string='todos';
   listaRandomContacts: IRandomContact[]=[];
 
+  cargando:boolean = true;
+
 
   constructor(private router: Router, private route:ActivatedRoute,
       private randomUserService: RandomUserService
@@ -37,7 +39,10 @@ export class ContactsPageComponent implements OnInit {
               console.log(this.listaRandomContacts);
             },
             error: (error)=> console.error(`${error}`),
-            complete: ()=>console.info('Peticion de random contact terminada')
+            complete: ()=>{console.info('Peticion de random contact terminada')
+            this.cargando=false;
+          }
+
           });
         }else{
           //Implementacion para obtener la lista de contactos aleatorios
@@ -50,7 +55,10 @@ export class ContactsPageComponent implements OnInit {
             console.log(this.listaRandomContacts);
           },
           error: (error)=> console.error(`${error}`),
-          complete: ()=>console.info('Peticion de random contact terminada')
+          complete: ()=>{
+            console.info('Peticion de random contact terminada')
+          this.cargando=false;
+        }
         });
         }
       }

@@ -1,9 +1,14 @@
 <p>Tus contactos: </p>
 
+<div *ngIf="cargando">
+  <mat-spinner></mat-spinner>
+  <h6>Cargando..</h6>
+</div>
+
 <div *ngFor="let contacto of listaRandomContacts; let i=index">
     <div>
         <h4 routerLink="{{contacto.id.name}}" [state]="{data:contacto,filtro: filtroSexo}">{{contacto.name.first+' '+contacto.name.last}}</h4>
-        <button (click)="volverAHome(contacto)">Seleccionar como amigo invisible</button>
+        <button mat-raised-button color="primary" (click)="volverAHome(contacto)">Seleccionar como amigo invisible</button>
     </div>
 </div>
 
